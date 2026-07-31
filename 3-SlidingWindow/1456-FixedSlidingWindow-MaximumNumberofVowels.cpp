@@ -23,7 +23,6 @@ public:
             }
         }
         int maxCount = vowelCount;
-        cout<< "1" << maxCount<< endl;
         for(int i = k; i<s.size(); i++){
             if(isVowel(s[i])){
                 vowelCount++;
