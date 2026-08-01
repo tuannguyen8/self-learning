@@ -12,7 +12,7 @@ public:
         int left = 0;
         int right = nums.size()-1;
 
-        while(left<= right){
+        while(left< right){
             int mid = left+(right-left)/2;
 
             if(nums[mid] == target){
@@ -23,6 +23,9 @@ public:
                 right = mid - 1;
             }
         }
+        //Note: at the end of binary search,left is always the first index 
+        // that is greater(or equal )to the target, and right is always the 
+        // last index that is smaller than target.
         return left;
     }
 };
