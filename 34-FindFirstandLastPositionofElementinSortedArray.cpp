@@ -9,14 +9,12 @@ using namespace std;
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-        if (nums.empty()) {
-            return {-1, -1};
-        }
+        int n = nums.size();
 
+        // Tìm vị trí đầu tiên có giá trị >= target
         int left = 0;
-        int right = nums.size() - 1;
+        int right = n;
 
-        // Tìm vị trí đầu tiên
         while (left < right) {
             int mid = left + (right - left) / 2;
 
@@ -27,30 +25,29 @@ public:
             }
         }
 
-        // Kiểm tra target có tồn tại hay không
-        if (nums[left] != target) {
+        int start = left;
+
+        // Target không tồn tại
+        if (start == n || nums[start] != target) {
             return {-1, -1};
         }
 
-        int start = left;
-
-        // Tìm vị trí cuối cùng
+        // Tìm vị trí đầu tiên có giá trị > target
         left = 0;
-        right = nums.size() - 1;
+        right = n;
 
         while (left < right) {
-            // Làm tròn mid sang bên phải
-            int mid = left + (right - left + 1) / 2;
+            int mid = left + (right - left) / 2;
 
-            if (nums[mid] <= target) {
-                left = mid;
+            if (nums[mid] > target) {
+                right = mid;
             } else {
-                right = mid - 1;
+                left = mid + 1;
             }
         }
 
-        int end = left;
+        int end = left - 1;
 
         return {start, end};
     }
-};
+}; 
